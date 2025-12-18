@@ -95,22 +95,46 @@ h2{font-family:'Poppins', sans-serif; font-size:22px; font-weight:500; margin-to
 
 /* Photos */
 .photos{display:flex; justify-content:center; flex-wrap:wrap; position:relative; z-index:1;}
-.photo-box{position:relative; margin:15px; width:260px;}
-.photo-box img{width:100%;height:auto; border-radius:18px; box-shadow:0 10px 30px rgba(0,0,0,0.4); display:block;}
+.photo-box{
+  position:relative;
+  width:260px;
+  height:380px;              /* fixed height */
+  margin:15px;
+  border-radius:22px;
+  overflow:hidden;           /* VERY IMPORTANT */
+  background:#000;
+}
+
+.photo-box img{
+  width:100%;
+  height:100%;
+  object-fit:cover;          /* keeps image inside */
+  display:block;
+}
+
 .photo-text{
   position:absolute;
-  bottom:0; left:0; right:0;
-  text-align:center; padding:10px;
-  background:rgba(0,0,0,0.55);
-  border-radius:0 0 18px 18px;
+  bottom:0;
+  left:0;
+  width:100%;
+
+  height:52px;               /* SAME FOR ALL */
+  background:rgba(0,0,0,0.65);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
   font-family:'Poppins', sans-serif;
-  font-size:16px;
+  font-size:15px;
   font-weight:600;
-  color:#fff;
-  opacity:0;
-  animation: fadeIn 2s forwards;
-  word-wrap: break-word;
+  color:white;
+
+  text-align:center;
+  padding:0 12px;
+  box-sizing:border-box;
 }
+
 @keyframes fadeIn{from{opacity:0;} to{opacity:1;}}
 
 /* Floating hearts */
@@ -132,11 +156,135 @@ h2{font-family:'Poppins', sans-serif; font-size:22px; font-weight:500; margin-to
 /* Background particles */
 .particle{position:absolute; width:6px; height:6px; background: rgba(255,255,255,0.6); border-radius:50%; animation: moveParticle 10s linear infinite; z-index:-1;}
 @keyframes moveParticle{0%{transform:translate(0,0);} 100%{transform:translate(1200px,800px);}}
+
+.photo-box {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.photo-box:hover,
+.photo-box:active {
+  transform: scale(1.08);
+  box-shadow: 0 20px 40px rgba(255,77,109,0.6);
+}
+
+.photo-box img {
+  transition: transform 0.4s ease;
+}
+
 </style>
 </head>
 
+<script>
+  const correctPassword = "sidgi2027"; // 🔑 change password here
+
+  function checkPassword(){
+    const input = document.getElementById("passwordInput").value;
+    const error = document.getElementById("errorMsg");
+
+    if(input === correctPassword){
+      document.getElementById("lockScreen").style.display = "none";
+      alert("🎉 Welcome My Love 💖");
+    } else {
+      error.innerHTML = "❌ Wrong password, try again 💔";
+    }
+  }
+
+  function togglePassword(){
+    const input = document.getElementById("passwordInput");
+    input.type = input.type === "password" ? "text" : "password";
+  }
+</script>
+
+<div id="photoModal" onclick="closePhoto()" style="
+  display:none;
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background:rgba(0,0,0,0.9);
+  z-index:9999;
+  justify-content:center;
+  align-items:center;
+">
+  <img id="modalImg" style="
+    max-width:90%;
+    max-height:90%;
+    border-radius:20px;
+    animation: fadeZoom 0.5s ease;
+  ">
+</div>
+
+<script>
+function openPhoto(src){
+  document.getElementById("modalImg").src = src;
+  document.getElementById("photoModal").style.display = "flex";
+}
+
+function closePhoto(){
+  document.getElementById("photoModal").style.display = "none";
+}
+</script>
+
+
 <body>
-  
+
+<!-- PASSWORD SCREEN -->
+<div id="lockScreen" style="
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background:linear-gradient(135deg,#ff758c,#ff7eb3);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+  font-family:Poppins,sans-serif;
+  color:white;
+">
+
+  <div style="
+    background:rgba(255,255,255,0.15);
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+    width:90%;
+    max-width:350px;
+    backdrop-filter:blur(10px);
+  ">
+    <h2 style="margin-bottom:10px;">💖 Secret Surprise 💖</h2>
+    <p style="font-size:14px;">Enter the magic password 🎁</p>
+
+    <input id="passwordInput" type="password" placeholder="Enter password"
+      style="
+        width:100%;
+        padding:12px;
+        border:none;
+        border-radius:30px;
+        outline:none;
+        font-size:16px;
+        margin-top:15px;
+      ">
+
+    <div style="margin-top:10px; cursor:pointer; font-size:14px;"
+      onclick="togglePassword()">👁️ Show / Hide</div>
+
+    <button onclick="checkPassword()" style="
+      margin-top:20px;
+      padding:12px 30px;
+      border:none;
+      border-radius:30px;
+      background:white;
+      color:#ff4d6d;
+      font-size:16px;
+      font-weight:600;
+      cursor:pointer;
+    ">
+      Unlock 🎁
+    </button>
+
+    <p id="errorMsg" style="margin-top:15px; color:#ffecec;"></p>
+  </div>
+</div>
+
 <!-- Music -->
 <button class="btn" id="playMusicBtn">Play Music 🎵</button>
 <audio id="bgMusic" loop>
@@ -187,9 +335,9 @@ This little surprise is just a small way to say how much you mean to me 💖
 <div class="page fade" id="page2">
 <h1>Our Beautiful Memories 📸</h1>
 <div class="photos">
-<div class="photo-box"><img src="hb.jpg"><div class="photo-text">My favorite smile ❤️</div></div>
-<div class="photo-box"><img src="hb1.jpg"><div class="photo-text">Every moment with you 💕</div></div>
-<div class="photo-box"><img src="hb2.jpg"><div class="photo-text">Forever feels right with you 💫</div></div>
+<div class="photo-box"><img src="hb.jpg" onclick="openPhoto(this.src)"><div class="photo-text">My favorite smile ❤️</div></div>
+<div class="photo-box"><img src="hb1.jpg" onclick="openPhoto(this.src)"><div class="photo-text">Every moment with you 💕</div></div>
+<div class="photo-box"><img src="hb2.jpg" onclick="openPhoto(this.src)"><div class="photo-text">Forever feels right with you 💫</div></div>
 </div>
 <button class="btn" onclick="showPage('page1')">⬅ Back</button>
 <button class="btn" onclick="showPage('page3')">Next ➜</button>
@@ -235,7 +383,6 @@ if(pageId=='page3'){i=0; document.getElementById("typing").innerHTML=""; typeTex
 }
 function typeText(){if(i<typingText.length){document.getElementById("typing").innerHTML += typingText.charAt(i)==='\n'?"<br>":typingText.charAt(i); i++; setTimeout(typeText,150);}}
 </script>
+
 </body>
 </html>
-
-
