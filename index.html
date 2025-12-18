@@ -14,6 +14,7 @@ html{
 }
 body{
   margin:0;
+  padding:0;
   font-family:'Poppins', sans-serif;
   color:white;
   text-align:center;
@@ -41,7 +42,9 @@ body::before {
 /* Pages */
 .page{
   min-height:100vh;
-  padding:40px 20px 80px;
+  width:100%
+  padding:20px;
+  box-sizing: border-box;
   display:none;
   position:relative;
 }
@@ -93,7 +96,7 @@ h2{font-family:'Poppins', sans-serif; font-size:22px; font-weight:500; margin-to
 /* Photos */
 .photos{display:flex; justify-content:center; flex-wrap:wrap; position:relative; z-index:1;}
 .photo-box{position:relative; margin:15px; width:260px;}
-.photo-box img{width:100%; border-radius:18px; box-shadow:0 10px 30px rgba(0,0,0,0.4); display:block;}
+.photo-box img{width:100%;height:auto; border-radius:18px; box-shadow:0 10px 30px rgba(0,0,0,0.4); display:block;}
 .photo-text{
   position:absolute;
   bottom:0; left:0; right:0;
@@ -230,7 +233,7 @@ document.getElementById(pageId).style.display="block";
 currentPage=pageId;
 if(pageId=='page3'){i=0; document.getElementById("typing").innerHTML=""; typeText();}
 }
-function typeText(){if(i<typingText.length){document.getElementById("typing").innerHTML += typingText.charAt(i)==='\n'?"<br>":typingText.charAt(i); i++; setTimeout(typeText,50);}}
+function typeText(){if(i<typingText.length){document.getElementById("typing").innerHTML += typingText.charAt(i)==='\n'?"<br>":typingText.charAt(i); i++; setTimeout(typeText,150);}}
 </script>
 </body>
 </html>
