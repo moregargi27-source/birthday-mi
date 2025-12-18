@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday ❤️</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+html{
+  scroll-behavior:smooth;
+}
+body{
+  margin:0;
+  font-family:'Poppins', sans-serif;
+  color:white;
+  text-align:center;
+  overflow-x:hidden;
+  overflow-y: auto;
+  background:#ff758c;
+}
+
+/* Animated Gradient Background */
+body::before {
+  content:"";
+  position:fixed;
+  top:0; left:0; right:0; bottom:0;
+  background: linear-gradient(-45deg,#ff758c,#ffb199,#667eea,#764ba2,#ff6a88,#ffcc70);
+  background-size: 1200% 1200%;
+  z-index:-2;
+  animation: gradientBG 30s ease infinite;
+}
+@keyframes gradientBG{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
+/* Pages */
+.page{
+  min-height:100vh;
+  padding:40px 20px 80px;
+  display:none;
+  position:relative;
+}
+#page1{display:block;}
+#page2{}
+#page3{}
+
+/* Headings */
+h1{font-family:'Dancing Script', cursive; font-size:48px; margin-top:40px; position:relative;}
+h1::after{
+  content:'✨';
+  position:absolute;
+  top:-20px;
+  right:-20px;
+  font-size:28px;
+  animation: sparkle 1.5s infinite alternate;
+}
+@keyframes sparkle{
+  0%{opacity:0; transform:scale(0.5) rotate(0deg);}
+  50%{opacity:1; transform:scale(1) rotate(15deg);}
+  100%{opacity:0; transform:scale(0.5) rotate(-15deg);}
+}
+
+h2{font-family:'Poppins', sans-serif; font-size:22px; font-weight:500; margin-top:15px;}
+
+/* Intro and message text */
+.intro, .msg{
+  font-family:'Poppins', sans-serif;
+  font-size:18px;
+  line-height:1.7;
+  max-width:750px;
+  margin:25px auto;
+}
+
+/* Buttons */
+.btn{
+  font-family:'Poppins', sans-serif;
+  font-size:16px;
+  font-weight:600;
+  margin:20px 10px;
+  padding:12px 30px;
+  border:none;
+  border-radius:30px;
+  background:white;
+  color:#ff4d6d;
+  cursor:pointer;
+}
+
+/* Photos */
+.photos{display:flex; justify-content:center; flex-wrap:wrap; position:relative; z-index:1;}
+.photo-box{position:relative; margin:15px; width:260px;}
+.photo-box img{width:100%; border-radius:18px; box-shadow:0 10px 30px rgba(0,0,0,0.4); display:block;}
+.photo-text{
+  position:absolute;
+  bottom:0; left:0; right:0;
+  text-align:center; padding:10px;
+  background:rgba(0,0,0,0.55);
+  border-radius:0 0 18px 18px;
+  font-family:'Poppins', sans-serif;
+  font-size:16px;
+  font-weight:600;
+  color:#fff;
+  opacity:0;
+  animation: fadeIn 2s forwards;
+  word-wrap: break-word;
+}
+@keyframes fadeIn{from{opacity:0;} to{opacity:1;}}
+
+/* Floating hearts */
+.floating-heart{position:absolute; font-size:20px; animation: floatUp 5s linear infinite; opacity:0.8;}
+@keyframes floatUp{0% {transform:translateY(100%) rotate(0deg); opacity:0;} 50% {opacity:1;} 100% {transform:translateY(-100%) rotate(360deg); opacity:0;}}
+
+/* Hearts Page 3 */
+.heart3{position:absolute; font-size:30px; animation: floatUp3 linear infinite; opacity:0.8;}
+@keyframes floatUp3{0% {transform:translateY(100%) rotate(0deg);} 100% {transform:translateY(-120%) rotate(360deg);}}
+
+/* Floating main heart */
+.heart{font-size:50px; animation: beat 1.5s infinite;}
+@keyframes beat{0%,100%{transform:scale(1);} 50%{transform:scale(1.2);}}
+
+/* Colorful Confetti */
+.confetti{position:absolute; font-size:20px; animation: fall 5s linear infinite; opacity:0.9;}
+@keyframes fall{0%{transform:translateY(-10px) translateX(0) rotate(0deg);} 100%{transform:translateY(110vh) translateX(50px) rotate(360deg);}}
+
+/* Background particles */
+.particle{position:absolute; width:6px; height:6px; background: rgba(255,255,255,0.6); border-radius:50%; animation: moveParticle 10s linear infinite; z-index:-1;}
+@keyframes moveParticle{0%{transform:translate(0,0);} 100%{transform:translate(1200px,800px);}}
+</style>
+</head>
+
+<body>
+
+<!-- Music -->
+<button class="btn" id="playMusicBtn">Play Music 🎵</button>
+<audio id="bgMusic" loop>
+  <source src="hbsong.mp3" type="audio/mpeg">
+</audio>
+<script>
+document.getElementById("playMusicBtn").addEventListener("click", function(){
+    var audio = document.getElementById("bgMusic");
+    audio.play();
+    this.style.display = "none";
+});
+</script>
+
+<!-- Background particles -->
+<script>
+for(let i=0;i<50;i++){
+  let p = document.createElement("div");
+  p.className="particle";
+  p.style.top=Math.random()*100+"vh";
+  p.style.left=Math.random()*100+"vw";
+  p.style.width = Math.random()*6+2+"px";
+  p.style.height = Math.random()*6+2+"px";
+  p.style.animationDuration= 5+Math.random()*10 + "s";
+  document.body.appendChild(p);
+}
+</script>
+
+<!-- PAGE 1 -->
+<div class="page fade" id="page1">
+<h1>Happy Birthday Siddhu ❤️</h1>
+<h2>Today is special… because YOU were born 🎂</h2>
+<div class="intro">
+From the moment you came into my life, everything became warmer, brighter, and more meaningful 💫 
+<br><br>
+This little surprise is just a small way to say how much you mean to me 💖
+</div>
+<div class="heart">💖</div>
+<button class="btn" onclick="showPage('page2')">Next ➜</button>
+
+<div class="floating-heart" style="left:10%; animation-delay:0s;">❤️</div>
+<div class="floating-heart" style="left:25%; animation-delay:1s;">💖</div>
+<div class="floating-heart" style="left:50%; animation-delay:2s;">❤️</div>
+<div class="floating-heart" style="left:70%; animation-delay:1.5s;">💖</div>
+<div class="floating-heart" style="left:85%; animation-delay:0.5s;">❤️</div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page fade" id="page2">
+<h1>Our Beautiful Memories 📸</h1>
+<div class="photos">
+<div class="photo-box"><img src="hb.jpg"><div class="photo-text">My favorite smile ❤️</div></div>
+<div class="photo-box"><img src="hb1.jpg"><div class="photo-text">Every moment with you 💕</div></div>
+<div class="photo-box"><img src="hb2.jpg"><div class="photo-text">Forever feels right with you 💫</div></div>
+</div>
+<button class="btn" onclick="showPage('page1')">⬅ Back</button>
+<button class="btn" onclick="showPage('page3')">Next ➜</button>
+
+<div class="floating-heart" style="left:5%; animation-delay:0.3s;">💖</div>
+<div class="floating-heart" style="left:20%; animation-delay:1.2s;">❤️</div>
+<div class="floating-heart" style="left:40%; animation-delay:0.8s;">💖</div>
+<div class="floating-heart" style="left:60%; animation-delay:1.5s;">❤️</div>
+<div class="floating-heart" style="left:80%; animation-delay:0.5s;">💖</div>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page fade" id="page3">
+<h1>For You, My Love 💌</h1>
+<div class="msg" id="typing"></div>
+
+<div class="heart3" style="left:10%; animation-duration:8s;">💖</div>
+<div class="heart3" style="left:30%; animation-duration:10s;">❤️</div>
+<div class="heart3" style="left:50%; animation-duration:9s;">💖</div>
+<div class="heart3" style="left:70%; animation-duration:11s;">❤️</div>
+<div class="heart3" style="left:90%; animation-duration:8s;">💖</div>
+
+
+<div class="heart">🎂</div>
+<button class="btn" onclick="showPage('page2')">⬅ Back</button>
+</div>
+
+<script>
+var currentPage='page1';
+var typingText="Happy Birthday, my love ❤️\n\n"+
+"On this special day, I just want you to know how incredibly grateful I am to have you in my life.\n\n"+
+"You are my happiness, my comfort, and my safe place. Every smile of yours makes my world brighter.\n\n"+
+"Thank you for loving me and standing by me always.\n\n"+
+"I promise to love you more every single day.\n\n"+
+"Happy Birthday Siddhu 💖\nForever yours ❤️";
+var i=0;
+function showPage(pageId){
+window.scrollTo(0,0);
+document.getElementById(currentPage).style.display="none";
+document.getElementById(pageId).style.display="block";
+currentPage=pageId;
+if(pageId=='page3'){i=0; document.getElementById("typing").innerHTML=""; typeText();}
+}
+function typeText(){if(i<typingText.length){document.getElementById("typing").innerHTML += typingText.charAt(i)==='\n'?"<br>":typingText.charAt(i); i++; setTimeout(typeText,50);}}
+</script>
+</body>
+</html>
