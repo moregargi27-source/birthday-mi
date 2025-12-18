@@ -137,6 +137,13 @@ h2{font-family:'Poppins', sans-serif; font-size:22px; font-weight:500; margin-to
 
 <body>
 
+  <script>
+var pass = prompt("Enter password:");
+if(pass !== "sidgi2027"){
+  document.body.innerHTML = "Access Denied ❌";
+}
+</script>
+  
 <!-- Music -->
 <button class="btn" id="playMusicBtn">Play Music 🎵</button>
 <audio id="bgMusic" loop>
@@ -237,3 +244,4 @@ function typeText(){if(i<typingText.length){document.getElementById("typing").in
 </script>
 </body>
 </html>
+
